@@ -1,15 +1,22 @@
 if arg[#arg] == "debug" then
     require("lldebugger").start()
 end
+local statemanager = require("statemanager")
+local commandbuffer = require("commandbuffer")
+local imagemanager = require("imagemanager")
+local images = require("images")
 function love.load()
-    --TODO: initialize things
+    love.keyboard.setKeyRepeat(true)
+    statemanager.load()
+    commandbuffer.load()
+    imagemanager.load()
 end
 function love.update(dt)
-    --TODO: update things
+    statemanager.update(dt)
 end
 function love.draw()
-    --TODO: draw things
+    statemanager.draw()
 end
 function love.keypressed( key, scancode, isrepeat )
-    --TODO: handle key presses
+    commandbuffer.processKey(key)
 end
