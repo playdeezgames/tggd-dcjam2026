@@ -1,5 +1,5 @@
 local M = {}
-local images = require("images")
+local images = require("ui.images")
 local repository = {}
 local function loadImage(imageId,filename)
     repository[imageId]=love.graphics.newImage(filename)

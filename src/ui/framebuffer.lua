@@ -1,7 +1,7 @@
 local M = {}
 local constants = require("constants")
-local framebuffercell = require("framebuffercell")
-local colors = require("colors")
+local framebuffercell = require("ui.framebuffercell")
+local colors = require("ui.colors")
 local buffer = {}
 function M.load()
     for column = 0, constants.CELL_COLUMNS - 1 do

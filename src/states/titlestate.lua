@@ -1,10 +1,10 @@
 local M = {}
-local state = require("state")
-local states = require("states")
-local colors = require("colors")
-local menu   = require("menu")
-local menuitem = require("menuitem")
-local commands = require("commands")
+local state = require("states.state")
+local states = require("states.states")
+local colors = require("ui.colors")
+local menu   = require("ui.menu")
+local menuitem = require("ui.menuitem")
+local commands = require("ui.commands")
 M.EMBARK = "embark"
 M.ABOUT = "about"
 M.OPTIONS = "options"

@@ -1,15 +1,15 @@
-local states = require "states"
-local framebuffer = require "framebuffer"
+local states = require "states.states"
+local framebuffer = require "ui.framebuffer"
 if arg[#arg] == "debug" then
     require("lldebugger").start()
 end
-local statemanager = require("statemanager")
-local commandbuffer = require("commandbuffer")
-local imagemanager = require("imagemanager")
-local tilesetmanager = require("tilesetmanager")
-local tilesets = require("tilesets")
-local colormanager = require("colormanager")
-local colors = require("colors")
+local statemanager = require("states.statemanager")
+local commandbuffer = require("ui.commandbuffer")
+local imagemanager = require("ui.imagemanager")
+local tilesetmanager = require("ui.tilesetmanager")
+local tilesets = require("ui.tilesets")
+local colormanager = require("ui.colormanager")
+local colors = require("ui.colors")
 local constants = require("constants")
 function love.load()
     love.keyboard.setKeyRepeat(true)

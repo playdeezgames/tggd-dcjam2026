@@ -1,8 +1,8 @@
 local M = {}
-local tilesets = require("tilesets")
-local images = require("images")
-local imagemanager = require("imagemanager")
-local tileset = require("tileset")
+local tilesets = require("ui.tilesets")
+local images = require("ui.images")
+local imagemanager = require("ui.imagemanager")
+local tileset = require("ui.tileset")
 local constants = require("constants")
 local repository = {}
 local function loadTileSet(tileSetId,imageId,tileWidth,tileHeight)

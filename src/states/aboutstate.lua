@@ -1,11 +1,11 @@
 local M = {}
 M.OK = "ok"
 M.CANCEL = "cancel"
-local menustate = require("menustate")
-local menu = require("menu")
-local menuitem = require("menuitem")
-local colors = require("colors")
-local states = require("states")
+local menustate = require("states.menustate")
+local menu = require("ui.menu")
+local menuitem = require("ui.menuitem")
+local colors = require("ui.colors")
+local states = require("states.states")
 local function createAboutMenuHandler(state)
     local result = menu.create(0,0,"About", colors.BROWN, colors.BLACK)
     result:addItem(menuitem.create(M.OK,"OK", colors.WHITE, colors.BLACK))

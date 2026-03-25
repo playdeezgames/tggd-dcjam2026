@@ -1,4 +1,4 @@
-local commands = require("commands")
+local commands = require("ui.commands")
 local M = {}
 function M.load()
 end

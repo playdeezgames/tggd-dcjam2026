@@ -1,5 +1,5 @@
 local M = {}
-local tile = require("tile")
+local tile = require("ui.tile")
 function M.create(image, tileWidth, tileHeight)
     local instance = {}
     instance.tiles = {}

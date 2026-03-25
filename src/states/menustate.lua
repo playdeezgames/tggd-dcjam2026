@@ -1,9 +1,9 @@
 local M = {}
-local state = require("state")
-local framebuffer = require("framebuffer")
+local state = require("states.state")
+local framebuffer = require("ui.framebuffer")
 local constants = require("constants")
-local colors = require("colors")
-local commands = require("commands")
+local colors = require("ui.colors")
+local commands = require("ui.commands")
 local function menuStateStartHandler(state)
     framebuffer.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, 1, colors.BLACK, colors.BLACK)
     state.menu = state:createMenu()

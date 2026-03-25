@@ -1,6 +1,6 @@
 local M = {}
-local colors = require("colors")
-local color = require("color")
+local colors = require("ui.colors")
+local color = require("ui.color")
 local repository = {}
 local function loadColor(colorId, red, green, blue)
     repository[colorId] = color.create(red,green,blue)

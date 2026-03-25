@@ -1,5 +1,5 @@
 local M = {}
-local framebuffer = require("framebuffer")
+local framebuffer = require("ui.framebuffer")
 function M.create(column, row, text, foreground, background)
     local instance = {}
     instance.column = column
