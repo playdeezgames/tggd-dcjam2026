@@ -13,20 +13,12 @@ local colors = require("colors")
 local constants = require("constants")
 function love.load()
     love.keyboard.setKeyRepeat(true)
-    statemanager.load()
+    framebuffer.load()
     commandbuffer.load()
     imagemanager.load()
     tilesetmanager.load()--tileset after images
     colormanager.load()
-    framebuffer.load()
---TODO: snip
-    local cell = framebuffer.getCell(0,0)
-    if cell ~= nil then
-        cell.tileId = 65
-        cell.foreground = colors.BLUE
-        cell.background = colors.LIGHT_BLUE
-    end
---TODO: end snip
+    statemanager.load()
     --set state as last thing
     statemanager.setState(states.TITLE)
 end
