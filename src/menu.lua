@@ -25,6 +25,24 @@ function M.create(column, row, text, foreground, background)
             row = row + 1
         end
     end
+    function instance:nextItem()
+        if #self.items > 0 then
+            if self.currentItem < #self.items then
+                self.currentItem = self.currentItem + 1
+            else
+                self.currentItem = 1
+            end
+        end
+    end
+    function instance:previousItem()
+        if #self.items > 0 then
+            if self.currentItem > 1 then
+                self.currentItem = self.currentItem - 1
+            else
+                self.currentItem = #self.items
+            end
+        end
+    end
     return instance
 end
 return M

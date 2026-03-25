@@ -3,11 +3,16 @@ local state = require("state")
 local colors = require("colors")
 local menu   = require("menu")
 local menuitem = require("menuitem")
+local commands = require("commands")
 local function titleStateUpdateHandler(state, dt)
     state.menu:render()
 end
 local function titleStateCommandHandler(state, command)
-    print("handle title state command: "..command)
+    if command == commands.UP then
+        state.menu:previousItem()
+    elseif command == commands.DOWN then
+        state.menu:nextItem()
+    end
 end
 local function titleStateStartHandler(state)
     state.menu = menu.create(0, 0, "Main Menu:", colors.BROWN, colors.BLACK)
