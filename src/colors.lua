@@ -1,0 +1,18 @@
+local M = {}
+M.BLACK = "black"
+M.BLUE = "blue"
+M.GREEN = "green"
+M.CYAN = "cyan"
+M.RED = "red"
+M.MAGENTA = "magenta"
+M.BROWN = "brown"
+M.LIGHT_GRAY = "light gray"
+M.DARK_GRAY = "dark gray"
+M.LIGHT_BLUE = "light blue"
+M.LIGHT_GREEN = "light green"
+M.LIGHT_CYAN = "light cyan"
+M.LIGHT_RED = "light red"
+M.LIGHT_MAGENTA = "light magenta"
+M.YELLOW = "yellow"
+M.WHITE = "white"
+return M

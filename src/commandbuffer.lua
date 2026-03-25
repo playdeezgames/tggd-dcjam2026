@@ -22,4 +22,10 @@ function M.processKey(key)
         table.insert(commandQueue, command)
     end
 end
+function M.nextCommand()
+    if #commandQueue > 0 then
+        return table.remove(commandQueue,1)
+    end
+    return nil
+end
 return M
