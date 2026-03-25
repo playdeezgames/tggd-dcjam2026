@@ -43,6 +43,12 @@ function M.create(column, row, text, foreground, background)
             end
         end
     end
+    function instance:getCurrentItemId()
+        if #self.items >= self.currentItem  then
+            return self.items[self.currentItem].itemId
+        end
+        return nil
+    end
     return instance
 end
 return M

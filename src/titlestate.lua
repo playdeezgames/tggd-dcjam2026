@@ -1,27 +1,38 @@
 local M = {}
 local state = require("state")
+local states = require("states")
 local colors = require("colors")
 local menu   = require("menu")
 local menuitem = require("menuitem")
 local commands = require("commands")
+M.EMBARK = "embark"
+M.ABOUT = "about"
+M.OPTIONS = "options"
 local function titleStateUpdateHandler(state, dt)
     state.menu:render()
+end
+local function menuItemHandler(state, itemId)
+    if itemId == M.ABOUT then
+        return states.ABOUT
+    end
 end
 local function titleStateCommandHandler(state, command)
     if command == commands.UP then
         state.menu:previousItem()
     elseif command == commands.DOWN then
         state.menu:nextItem()
+    elseif command == commands.GREEN then
+        return menuItemHandler(state, state.menu:getCurrentItemId())
     end
+    return nil
 end
 local function titleStateStartHandler(state)
     state.menu = menu.create(0, 0, "Main Menu:", colors.BROWN, colors.BLACK)
-    state.menu:addItem(menuitem.create("","Embark!",colors.WHITE, colors.BLACK))
-    state.menu:addItem(menuitem.create("","About...",colors.WHITE, colors.BLACK))
-    state.menu:addItem(menuitem.create("","Options...",colors.WHITE, colors.BLACK))
+    state.menu:addItem(menuitem.create(M.EMBARK,"Embark!",colors.WHITE, colors.BLACK))
+    state.menu:addItem(menuitem.create(M.ABOUT,"About...",colors.WHITE, colors.BLACK))
+    state.menu:addItem(menuitem.create(M.OPTIONS,"Options...",colors.WHITE, colors.BLACK))
 end
 local function titleStateStopHandler(state)
-    print("stop title state")
 end
 function M.create()
     local instance = state.create(

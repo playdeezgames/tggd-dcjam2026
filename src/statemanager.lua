@@ -1,6 +1,7 @@
 local M = {}
 local states = require("states")
 local titlestate = require("titlestate")
+local aboutstate = require("aboutstate")
 local commandbuffer = require("commandbuffer")
 local repository = {}
 local currentStateId = nil
@@ -9,26 +10,18 @@ local function loadState(stateId, state)
 end
 function M.load()
     loadState(states.TITLE, titlestate.create())
+    loadState(states.ABOUT, aboutstate.create())
 end
 local function handleCommand(command)
     if currentStateId ~= nil then
-        repository[currentStateId]:handleCommand(command)
+        return repository[currentStateId]:handleCommand(command)
     end
+    return nil
 end
 local function updateCurrentState(dt)
     if currentStateId ~= nil then
         repository[currentStateId]:update(dt)
     end
-end
-function M.update(dt)
-    local command = nil
-    repeat
-        command = commandbuffer.nextCommand()
-        if command ~= nil then
-            handleCommand(command)
-        end
-    until command == nil
-    updateCurrentState(dt)
 end
 local function startCurrentState()
     if currentStateId ~= nil then
@@ -40,12 +33,28 @@ local function stopCurrentState()
         repository[currentStateId]:stop()
     end
 end
-function M.setState(stateId)
+local function setCurrentStateId(stateId)
     if currentStateId ~= stateId then
         stopCurrentState()
         currentStateId = stateId
         startCurrentState()
     end
+end
+function M.update(dt)
+    local command = nil
+    repeat
+        command = commandbuffer.nextCommand()
+        if command ~= nil then
+            local nextState = handleCommand(command)
+            if nextState ~= nil then
+                setCurrentStateId(nextState)
+            end
+        end
+    until command == nil
+    updateCurrentState(dt)
+end
+function M.setState(stateId)
+    setCurrentStateId(stateId)
 end
 function M.getState()
     return currentStateId

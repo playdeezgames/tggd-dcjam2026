@@ -22,8 +22,9 @@ function M.create(startHandler, stopHandler, updateHandler, commandHandler)
     end
     function instance:handleCommand(command)
         if self.commandHandler ~= nil then
-            self:commandHandler(command)
+            return self:commandHandler(command)
         end
+        return nil
     end
     return instance
 end
