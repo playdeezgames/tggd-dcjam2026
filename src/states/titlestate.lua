@@ -5,6 +5,8 @@ local colors = require("ui.colors")
 local menu   = require("ui.menu")
 local menuitem = require("ui.menuitem")
 local commands = require("ui.commands")
+local sfxmanager = require("ui.sfxmanager")
+local sfx = require("ui.sfx")
 M.EMBARK = "embark"
 M.ABOUT = "about"
 M.OPTIONS = "options"
@@ -14,7 +16,10 @@ end
 local function menuItemHandler(state, itemId)
     if itemId == M.ABOUT then
         return states.ABOUT
+    elseif itemId == M.EMBARK then
+        sfxmanager.play(sfx.TEST)
     end
+    return nil
 end
 local function titleStateCommandHandler(state, command)
     if command == commands.UP then
