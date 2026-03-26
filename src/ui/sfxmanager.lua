@@ -1,5 +1,7 @@
 local M = {}
 local sfx = require("ui.sfx")
+local settingsmanager = require("utility.settingsmanager")
+local settings        = require("utility.settings")
 local repository = {}
 local function loadSfx(sfxId,filename)
     repository[sfxId] = love.audio.newSource(filename,"static")
@@ -9,6 +11,7 @@ function M.load()
 end
 function M.play(sfxId)
     repository[sfxId]:stop()
+    repository[sfxId]:setVolume(settingsmanager.getSetting(settings.SFX_VOLUME))
     repository[sfxId]:play()
 end
 return M

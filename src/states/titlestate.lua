@@ -7,6 +7,7 @@ local menuitem = require("ui.menuitem")
 local commands = require("ui.commands")
 local sfxmanager = require("ui.sfxmanager")
 local sfx = require("ui.sfx")
+local settingsmanager = require("utility.settingsmanager")
 M.EMBARK = "embark"
 M.ABOUT = "about"
 M.OPTIONS = "options"
@@ -18,6 +19,8 @@ local function menuItemHandler(state, itemId)
         return states.ABOUT
     elseif itemId == M.EMBARK then
         sfxmanager.play(sfx.TEST)
+    elseif itemId == M.OPTIONS then
+        settingsmanager.save()
     end
     return nil
 end
