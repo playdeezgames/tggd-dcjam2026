@@ -1,5 +1,5 @@
 local M = {}
-function M.generate(generator)
+function M.fromGenerator(generator)
     local total = 0
     for _, v in pairs(generator) do
         total = total + v
@@ -13,5 +13,8 @@ function M.generate(generator)
         end
     end
     return nil
+end
+function M.fromRange(minimum, maximum)
+    return love.math.random(minimum, maximum)
 end
 return M
