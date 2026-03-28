@@ -2,21 +2,13 @@ local M = {}
 local state = require("states.state")
 local states = require("states.states")
 local colors = require("ui.colors")
-local menu   = require("ui.menu")
-local menuitem = require("ui.menuitem")
 local commands = require("ui.commands")
-local sfxmanager = require("ui.sfxmanager")
-local sfx = require("ui.sfx")
-local settingsmanager = require("utility.settingsmanager")
 local framebuffer     = require("ui.framebuffer")
 local constants       = require("constants")
 M.EMBARK = "embark"
 M.ABOUT = "about"
 M.OPTIONS = "options"
 local function titleStateUpdateHandler(state, dt)
-end
-local function menuItemHandler(state, itemId)
-    return nil
 end
 local function titleStateCommandHandler(state, command)
     if command == commands.GREEN then

@@ -27,6 +27,9 @@ function M.fill(column, row, columns, rows, tileId, foreground, background)
     end
 end
 function M.writeText(column, row, text, foreground, background)
+    assert(text,"must provide text to writetext")
+    assert(foreground,"must provide foreground color to writetext")
+    assert(background,"must provide background color to writetext")
     for index = 1, #text do
         local cell = M.getCell(column, row)
         if cell ~= nil then
@@ -35,6 +38,9 @@ function M.writeText(column, row, text, foreground, background)
             cell.background = background
         end
         column = column + 1
+        if column > #buffer then
+            break
+        end
     end
 end
 return M
