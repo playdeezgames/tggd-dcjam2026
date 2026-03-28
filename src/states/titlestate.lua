@@ -8,37 +8,27 @@ local commands = require("ui.commands")
 local sfxmanager = require("ui.sfxmanager")
 local sfx = require("ui.sfx")
 local settingsmanager = require("utility.settingsmanager")
+local framebuffer     = require("ui.framebuffer")
+local constants       = require("constants")
 M.EMBARK = "embark"
 M.ABOUT = "about"
 M.OPTIONS = "options"
 local function titleStateUpdateHandler(state, dt)
-    state.menu:render()
 end
 local function menuItemHandler(state, itemId)
-    if itemId == M.ABOUT then
-        return states.ABOUT
-    elseif itemId == M.EMBARK then
-        sfxmanager.play(sfx.TEST)
-    elseif itemId == M.OPTIONS then
-        settingsmanager.save()
-    end
     return nil
 end
 local function titleStateCommandHandler(state, command)
-    if command == commands.UP then
-        state.menu:previousItem()
-    elseif command == commands.DOWN then
-        state.menu:nextItem()
-    elseif command == commands.GREEN then
-        return menuItemHandler(state, state.menu:getCurrentItemId())
+    if command == commands.GREEN then
+        return states.MAIN_MENU
     end
     return nil
 end
 local function titleStateStartHandler(state)
-    state.menu = menu.create(0, 0, "Main Menu:", colors.BROWN, colors.BLACK)
-    state.menu:addItem(menuitem.create(M.EMBARK,"Embark!",colors.WHITE, colors.BLACK))
-    state.menu:addItem(menuitem.create(M.ABOUT,"About...",colors.WHITE, colors.BLACK))
-    state.menu:addItem(menuitem.create(M.OPTIONS,"Options...",colors.WHITE, colors.BLACK))
+    framebuffer.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, 1, colors.BLACK, colors.BLACK)
+    framebuffer.writeText(0,0,"Sunny Meadows of SPLORR!!",colors.WHITE, colors.BLACK)
+    framebuffer.writeText(0,1,"A production of TheGrumpyGameDev",colors.WHITE, colors.BLACK)
+    framebuffer.writeText(0,2,"For Dungeon Crawler Jam 2026",colors.WHITE, colors.BLACK)
 end
 local function titleStateStopHandler(state)
 end

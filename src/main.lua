@@ -51,3 +51,5 @@ end
 function love.keypressed( key, scancode, isrepeat )
     commandbuffer.processKey(key)
 end
+--https://alexjgriffith.itch.io/lovejs-player
+--7z a -tzip -r ..\sunnymeadows.love *
