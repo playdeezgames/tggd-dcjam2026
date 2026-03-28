@@ -1,4 +1,6 @@
 local states = require "states.states"
+local worldmanager = require "business.worldmanager"
+local neutral      = require "states.neutral"
 local M = {}
 M.EMBARK = "embark"
 M.OPTIONS = "options"
@@ -17,7 +19,11 @@ local function createMainMenuHandler(state)
     return result
 end
 local function mainMenuItemHandler(state,itemId)
-    if itemId == M.ABOUT then
+    if itemId == M.EMBARK then
+        local world = worldmanager.getWorld()
+        world:initialize()
+        return neutral.nextState(world)
+    elseif itemId == M.ABOUT then
         return states.ABOUT
     end
     return nil
