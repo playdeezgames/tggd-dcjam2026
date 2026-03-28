@@ -17,7 +17,7 @@ local function titleStateCommandHandler(state, command)
     return nil
 end
 local function titleStateStartHandler(state)
-    framebuffer.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, 1, colors.BLACK, colors.BLACK)
+    framebuffer.clear(1, colors.BLACK, colors.BLACK)
     framebuffer.writeText(0,0,"Sunny Meadows of SPLORR!!",colors.WHITE, colors.BLACK)
     framebuffer.writeText(0,1,"A production of TheGrumpyGameDev",colors.WHITE, colors.BLACK)
     framebuffer.writeText(0,2,"For Dungeon Crawler Jam 2026",colors.WHITE, colors.BLACK)

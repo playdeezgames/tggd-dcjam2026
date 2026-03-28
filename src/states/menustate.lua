@@ -5,7 +5,7 @@ local constants = require("constants")
 local colors = require("ui.colors")
 local commands = require("ui.commands")
 local function menuStateStartHandler(state)
-    framebuffer.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, 1, colors.BLACK, colors.BLACK)
+    framebuffer.clear(1, colors.BLACK, colors.BLACK)
     state.menu = state:createMenu()
 end
 local function menuStateStopHandler(state)

@@ -3,6 +3,7 @@ local states = require("states.states")
 local titlestate = require("states.titlestate")
 local aboutstate = require("states.aboutstate")
 local mainmenustate = require("states.mainmenustate")
+local navigationstate = require "states.navigationstate"
 local commandbuffer = require("ui.commandbuffer")
 local repository = {}
 local currentStateId = nil
@@ -13,6 +14,7 @@ function M.load()
     loadState(states.TITLE, titlestate.create())
     loadState(states.MAIN_MENU, mainmenustate.create())
     loadState(states.ABOUT, aboutstate.create())
+    loadState(states.NAVIGATION, navigationstate.create())
 end
 local function handleCommand(command)
     if currentStateId ~= nil then

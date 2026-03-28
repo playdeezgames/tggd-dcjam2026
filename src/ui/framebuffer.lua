@@ -26,6 +26,9 @@ function M.fill(column, row, columns, rows, tileId, foreground, background)
         end
     end
 end
+function M.clear(tileId, foreground, background)
+    M.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, tileId, foreground, background)
+end
 function M.writeText(column, row, text, foreground, background)
     assert(text,"must provide text to writetext")
     assert(foreground,"must provide foreground color to writetext")

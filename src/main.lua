@@ -1,5 +1,6 @@
 local states = require "states.states"
 local framebuffer = require "ui.framebuffer"
+local prefabmanager = require "ui.prefabmanager"
 if arg[#arg] == "debug" then
     require("lldebugger").start()
 end
@@ -26,6 +27,7 @@ function love.load()
     settingsmanager.load()
     statemanager.load()
     worldmanager.load()
+    prefabmanager.load()
     --set state as last thing
     statemanager.setState(states.TITLE)
 end

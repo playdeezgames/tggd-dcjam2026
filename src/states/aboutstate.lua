@@ -6,7 +6,7 @@ local colors = require("ui.colors")
 local commands = require("ui.commands")
 local states   = require("states.states")
 local function aboutStateStartHandler(state)
-    framebuffer.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, 1, colors.BLACK, colors.BLACK)
+    framebuffer.clear(1, colors.BLACK, colors.BLACK)
     framebuffer.writeText(0,0,"About Sunny Meadows of SPLORR!!",colors.BROWN, colors.BLACK)
     local row = 1
     framebuffer.writeText(0,row,"Everybody knows that there is a six",colors.LIGHT_GRAY, colors.BLACK)
