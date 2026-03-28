@@ -17,10 +17,10 @@ function M.initialize(world)
         end
     end
     local facing = walker:getDirections()[rng.fromRange(1, #walker:getDirections())]
-    local character = world:createCharacter(
+    local avatar = world:createCharacter(
         charactertypes.N00B, 
         map[rng.fromRange(1, constants.MAZE_COLUMNS)][rng.fromRange(1, constants.MAZE_ROWS)],
         facing)
-    world:setAvatar(character)
+    world:setAvatar(avatar)
 end
 return M

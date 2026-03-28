@@ -9,27 +9,30 @@ function M.create(data)
         worldinitializer.initialize(self)
     end
     function instance:clear()
-        self.avatarId = nil
-        self.characters = {}
-        self.locations = {}
+        self.data.avatarId = nil
+        self.data.characters = {}
+        self.data.locations = {}
     end
     function instance:createLocation(locationType, column, row)
         local locationId = #self.data.locations + 1
         self.data.locations[locationId] = {
             locationType = locationType,
             column = column,
-            row = row
+            row = row,
+            characters = {}
         }
         return location.create(self.data, locationId)
     end
-    function instance:createCharacter(characterType, location, facing)
+    function instance:createCharacter(characterType, initialLocation, facing)
         local characterId = #self.data.characters + 1
         self.data.characters[characterId] = {
             characterType = characterType,
-            locationId = location:getLocationId(),
+            locationId = initialLocation:getLocationId(),
             facing = facing
         }
-        return character.create(self.data, characterId)
+        local result = character.create(self.data, characterId)
+        initialLocation:addCharacter(result)
+        return result
     end
     function instance:setAvatar(avatar)
         if avatar ~= nil then

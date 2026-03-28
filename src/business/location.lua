@@ -10,6 +10,12 @@ function M.create(data, locationId)
     function instance:getLocationData()
         return self.data.locations[self:getLocationId()]
     end
+    function instance:addCharacter(addedCharacter)
+        self:getLocationData().characters[addedCharacter:getCharacterId()] = true
+    end
+    function instance:removeCharacter(removedCharacter)
+        self:getLocationData().characters[removedCharacter:getCharacterId()] = nil
+    end
     return instance
 end
 return M
