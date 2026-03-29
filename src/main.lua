@@ -3,6 +3,7 @@ local framebuffer = require "ui.framebuffer"
 local prefabmanager = require "ui.prefabmanager"
 local verbmanager   = require "business.verbmanager"
 local routetypemanager = require "business.routetypemanager"
+local charactertypemanager = require "business.charactertypemanager"
 if arg[#arg] == "debug" then
     require("lldebugger").start()
 end
@@ -32,6 +33,7 @@ function love.load()
     prefabmanager.load()
     routetypemanager.load()
     verbmanager.load()
+    charactertypemanager.load()
     --set state as last thing
     statemanager.setState(states.TITLE)
 end

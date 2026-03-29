@@ -38,6 +38,7 @@ function M.create(data)
         }
         local result = self:getCharacter(characterId)
         initialLocation:addCharacter(result)
+        result:initialize()
         return result
     end
     function instance:getCharacter(characterId)

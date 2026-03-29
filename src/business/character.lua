@@ -1,4 +1,5 @@
 local verbmanager = require "business.verbmanager"
+local charactertypemanager = require "business.charactertypemanager"
 local M = {}
 function M.create(data, characterId, w)
     local instance = {
@@ -41,6 +42,12 @@ function M.create(data, characterId, w)
         if l ~= nil then
             l:addCharacter(self)
         end
+    end
+    function instance:getCharacterType()
+        return self:getCharacterData().characterType
+    end
+    function instance:initialize()
+        charactertypemanager.getCharacterType(self:getCharacterType()):initialize(self)
     end
     return instance
 end
