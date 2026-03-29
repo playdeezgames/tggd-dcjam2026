@@ -27,6 +27,21 @@ function M.create(data, characterId, w)
         local v = verbmanager.getVerb(verbId)
         v:perform(self)
     end
+    function instance:setLocation(newLocation)
+        local l = self:getLocation()
+        if l ~= nil then
+            l:removeCharacter(self)
+        end
+        if newLocation~= nil then
+            self:getCharacterData().locationId = newLocation:getLocationId()
+        else
+            self:getCharacterData().locationId = nil
+        end
+        l = self:getLocation()
+        if l ~= nil then
+            l:addCharacter(self)
+        end
+    end
     return instance
 end
 return M

@@ -64,6 +64,9 @@ local function navigationStateCommandHandler(state, command)
     elseif command == commands.RIGHT then
         avatar:doVerb(verbs.TURN_RIGHT)
         drawRoom()
+    elseif command == commands.UP then
+        avatar:doVerb(verbs.MOVE)
+        drawRoom()
     end
     return nil
 end

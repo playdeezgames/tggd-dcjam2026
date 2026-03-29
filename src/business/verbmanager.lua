@@ -1,6 +1,7 @@
 local verbs = require "business.verbs"
 local turnleftverb = require "business.verbs.turnleftverb"
 local turnrightverb= require "business.verbs.turnrightverb"
+local moveverb     = require "business.verbs.moveverb"
 local M = {}
 local repository = {}
 local function loadVerb(verbId, newVerb)
@@ -9,6 +10,7 @@ end
 function M.load()
     loadVerb(verbs.TURN_LEFT, turnleftverb.create())
     loadVerb(verbs.TURN_RIGHT, turnrightverb.create())
+    loadVerb(verbs.MOVE, moveverb.create())
 end
 function M.getVerb(verbId)
     return repository[verbId]
