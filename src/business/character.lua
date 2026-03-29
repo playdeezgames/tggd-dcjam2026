@@ -70,6 +70,20 @@ function M.create(data, characterId, w)
         end
         characterData.statistics[statisticTypeId].value = value
     end
+    function instance:getStatistic(statisticTypeId)
+        local characterData = self:getCharacterData()
+        if characterData.statistics[statisticTypeId] == nil then
+            return nil
+        end
+        return characterData.statistics[statisticTypeId].value
+    end
+    function instance:getStatisticMaximum(statisticTypeId)
+        local characterData = self:getCharacterData()
+        if characterData.statistics[statisticTypeId] == nil then
+            return nil
+        end
+        return characterData.statistics[statisticTypeId].maximum
+    end
     return instance
 end
 return M

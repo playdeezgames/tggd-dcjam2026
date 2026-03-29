@@ -10,12 +10,15 @@ local cardinalwalker = require "utility.cardinalwalker"
 local routetypes     = require "business.routetypes"
 local commands       = require "ui.commands"
 local verbs          = require "business.verbs"
+local statistictypes = require "business.statistictypes"
 M.LEFT_PREFAB_X = 0
 M.LEFT_PREFAB_Y = 0
 M.AHEAD_PREFAB_X = 5
 M.AHEAD_PREFAB_Y = 0
 M.RIGHT_PREFAB_X = 15
 M.RIGHT_PREFAB_Y = 0
+M.STATS_PANEL_X = 20
+M.STATS_PANEL_Y = 0
 local function drawRoom()
     local w = worldmanager.getWorld()
     local avatar = w:getAvatar()
@@ -46,9 +49,20 @@ local function drawRoom()
     end
     prefabmanager.getPrefab(prefab):draw(M.RIGHT_PREFAB_X,M.RIGHT_PREFAB_Y)
 end
+local function drawStats()
+    local x, y = M.STATS_PANEL_X, M.STATS_PANEL_Y
+    local w = worldmanager.getWorld()
+    local avatar = w:getAvatar()
+    assert(avatar, "avatar should not be nil")
+
+    framebuffer.writeText(x,y,"Satiety: "..avatar:getStatistic(statistictypes.SATIETY).."/"..avatar:getStatisticMaximum(statistictypes.SATIETY),colors.MAGENTA,colors.BLACK)
+    y = y + 1
+    framebuffer.writeText(x,y,"Health: "..avatar:getStatistic(statistictypes.HEALTH).."/"..avatar:getStatisticMaximum(statistictypes.HEALTH),colors.LIGHT_RED,colors.BLACK)
+end
 local function navigationStateStartHandler(state)
     framebuffer.clear(1, colors.BLACK, colors.BLACK)
     drawRoom()
+    drawStats()
 end
 local function navigationStateStopHandler(state)
 end
