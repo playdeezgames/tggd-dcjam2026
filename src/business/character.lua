@@ -1,3 +1,4 @@
+local verbmanager = require "business.verbmanager"
 local M = {}
 function M.create(data, characterId, w)
     local instance = {
@@ -18,6 +19,13 @@ function M.create(data, characterId, w)
     end
     function instance:getFacing()
         return self:getCharacterData().facing
+    end
+    function instance:setFacing(newFacing)
+        self:getCharacterData().facing = newFacing
+    end
+    function instance:doVerb(verbId)
+        local v = verbmanager.getVerb(verbId)
+        v:perform(self)
     end
     return instance
 end

@@ -12,7 +12,6 @@ function M.load()
 --        repository[settings.SFX_VOLUME] = M.SFX_VOLUME_DEFAULT
 --    end
     repository[settings.SFX_VOLUME] = M.SFX_VOLUME_DEFAULT
-    print(repository[settings.SFX_VOLUME])
 end
 function M.getSetting(settingId)
     return repository[settingId]
