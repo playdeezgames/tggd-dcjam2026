@@ -34,7 +34,8 @@ function M.create(data)
         self.data.characters[characterId] = {
             characterType = characterType,
             locationId = initialLocation:getLocationId(),
-            facing = facing
+            facing = facing,
+            statistics = {}
         }
         local result = self:getCharacter(characterId)
         initialLocation:addCharacter(result)

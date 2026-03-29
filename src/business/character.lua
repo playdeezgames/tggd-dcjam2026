@@ -49,6 +49,27 @@ function M.create(data, characterId, w)
     function instance:initialize()
         charactertypemanager.getCharacterType(self:getCharacterType()):initialize(self)
     end
+    function instance:setStatisticMinimum(statisticTypeId, minimum)
+        local characterData = self:getCharacterData()
+        if characterData.statistics[statisticTypeId] == nil then
+            characterData.statistics[statisticTypeId] = {}
+        end
+        characterData.statistics[statisticTypeId].minimum = minimum
+    end
+    function instance:setStatisticMaximum(statisticTypeId, maximum)
+        local characterData = self:getCharacterData()
+        if characterData.statistics[statisticTypeId] == nil then
+            characterData.statistics[statisticTypeId] = {}
+        end
+        characterData.statistics[statisticTypeId].maximum = maximum
+    end
+    function instance:setStatistic(statisticTypeId, value)
+        local characterData = self:getCharacterData()
+        if characterData.statistics[statisticTypeId] == nil then
+            characterData.statistics[statisticTypeId] = {}
+        end
+        characterData.statistics[statisticTypeId].value = value
+    end
     return instance
 end
 return M
