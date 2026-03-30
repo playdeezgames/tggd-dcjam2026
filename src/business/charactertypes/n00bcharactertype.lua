@@ -7,7 +7,7 @@ local function initializeHandler(c)
     c:setStatisticMinimum(statistictypes.SATIETY, 0)
     c:setStatisticMaximum(statistictypes.SATIETY, SATIETY_MAXIMUM)
     c:setStatistic(statistictypes.SATIETY, SATIETY_MAXIMUM)
-    
+
     c:setStatisticMinimum(statistictypes.HEALTH, 0)
     c:setStatisticMaximum(statistictypes.HEALTH, HEALTH_MAXIMUM)
     c:setStatistic(statistictypes.HEALTH, HEALTH_MAXIMUM)
