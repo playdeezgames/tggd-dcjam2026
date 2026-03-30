@@ -12,6 +12,7 @@ local commands       = require "ui.commands"
 local verbs          = require "business.verbs"
 local statistictypes = require "business.statistictypes"
 local neutral        = require "states.neutral"
+local tags           = require "business.tags"
 M.LEFT_PREFAB_X = 0
 M.LEFT_PREFAB_Y = 0
 M.AHEAD_PREFAB_X = 5
@@ -70,6 +71,9 @@ local function navigationStateCommandHandler(state, command)
     elseif command == commands.UP then
         avatar:doVerb(verbs.MOVE)
         refresh()
+        return neutral.nextState(w)
+    elseif command == commands.GREEN then
+        avatar:setTag(tags.ACTION_MENU)
         return neutral.nextState(w)
     end
     return nil
