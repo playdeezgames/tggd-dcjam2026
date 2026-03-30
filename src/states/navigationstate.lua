@@ -11,6 +11,7 @@ local routetypes     = require "business.routetypes"
 local commands       = require "ui.commands"
 local verbs          = require "business.verbs"
 local statistictypes = require "business.statistictypes"
+local neutral        = require "states.neutral"
 M.LEFT_PREFAB_X = 0
 M.LEFT_PREFAB_Y = 0
 M.AHEAD_PREFAB_X = 5
@@ -78,12 +79,15 @@ local function navigationStateCommandHandler(state, command)
     if command == commands.LEFT then
         avatar:doVerb(verbs.TURN_LEFT)
         refresh()
+        return neutral.nextState(w)
     elseif command == commands.RIGHT then
         avatar:doVerb(verbs.TURN_RIGHT)
         refresh()
+        return neutral.nextState(w)
     elseif command == commands.UP then
         avatar:doVerb(verbs.MOVE)
         refresh()
+        return neutral.nextState(w)
     end
     return nil
 end

@@ -15,6 +15,9 @@ function M.create(data)
         self.data.locations = {}
         self.data.routes = {}
     end
+    function instance:abandon()
+        self:clear()
+    end
     function instance:createLocation(locationType, column, row)
         local locationId = #self.data.locations + 1
         self.data.locations[locationId] = {

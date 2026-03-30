@@ -5,6 +5,7 @@ local aboutstate = require("states.aboutstate")
 local mainmenustate = require("states.mainmenustate")
 local navigationstate = require "states.navigationstate"
 local commandbuffer = require("ui.commandbuffer")
+local gameoverstate = require("states.gameoverstate")
 local repository = {}
 local currentStateId = nil
 local function loadState(stateId, state)
@@ -15,6 +16,7 @@ function M.load()
     loadState(states.MAIN_MENU, mainmenustate.create())
     loadState(states.ABOUT, aboutstate.create())
     loadState(states.NAVIGATION, navigationstate.create())
+    loadState(states.GAME_OVER, gameoverstate.create())
 end
 local function handleCommand(command)
     if currentStateId ~= nil then
