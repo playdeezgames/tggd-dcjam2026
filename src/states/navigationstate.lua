@@ -29,26 +29,9 @@ local function drawRoom()
     local left = cardinalwalker.getLeft(ahead)
     local right = cardinalwalker.getRight(ahead)
 
-    local route = cell:getRoute(left)
-    local prefab = prefabs.LEFT_WALL
-    if route:getRouteType() == routetypes.DOOR then
-        prefab = prefabs.LEFT_DOOR
-    end
-    prefabmanager.getPrefab(prefab):draw(M.LEFT_PREFAB_X,M.LEFT_PREFAB_Y)
-    
-    route = cell:getRoute(ahead)
-    prefab = prefabs.AHEAD_WALL
-    if route:getRouteType() == routetypes.DOOR then
-        prefab = prefabs.AHEAD_DOOR
-    end
-    prefabmanager.getPrefab(prefab):draw(M.AHEAD_PREFAB_X,M.AHEAD_PREFAB_Y)
-
-    route = cell:getRoute(right)
-    prefab = prefabs.RIGHT_WALL
-    if route:getRouteType() == routetypes.DOOR then
-        prefab = prefabs.RIGHT_DOOR
-    end
-    prefabmanager.getPrefab(prefab):draw(M.RIGHT_PREFAB_X,M.RIGHT_PREFAB_Y)
+    prefabmanager.getPrefab(cell:getRoute(left):getLeftPrefab()):draw(M.LEFT_PREFAB_X,M.LEFT_PREFAB_Y)
+    prefabmanager.getPrefab(cell:getRoute(ahead):getAheadPrefab()):draw(M.AHEAD_PREFAB_X,M.AHEAD_PREFAB_Y)
+    prefabmanager.getPrefab(cell:getRoute(right):getRightPrefab()):draw(M.RIGHT_PREFAB_X,M.RIGHT_PREFAB_Y)
 end
 local function drawStats()
     local x, y = M.STATS_PANEL_X, M.STATS_PANEL_Y

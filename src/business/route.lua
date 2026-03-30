@@ -26,6 +26,18 @@ function M.create(data, routeId, w)
         end
         return nil
     end
+    function instance:getLeftPrefab()
+        local rt = routetypemanager.getRouteType(self:getRouteType())
+        return rt:getLeftPrefab(self)
+    end
+    function instance:getRightPrefab()
+        local rt = routetypemanager.getRouteType(self:getRouteType())
+        return rt:getRightPrefab(self)
+    end
+    function instance:getAheadPrefab()
+        local rt = routetypemanager.getRouteType(self:getRouteType())
+        return rt:getAheadPrefab(self)
+    end
     return instance
 end
 return M
