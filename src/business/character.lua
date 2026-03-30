@@ -91,6 +91,17 @@ function M.create(data, characterId, w)
         end
         return characterData.statistics[statisticTypeId].minimum
     end
+    function instance:getInventory()
+        local characterData = self:getCharacterData()
+        local inventoryId = characterData.inventoryId
+        if inventoryId ~= nil then
+            return self.world:getInventory(inventoryId)
+        else
+            local i = self.world:createInventory()
+            characterData.inventoryId = i:getInventoryId()
+            return i
+        end
+    end
     return instance
 end
 return M
