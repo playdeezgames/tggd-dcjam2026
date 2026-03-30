@@ -84,6 +84,13 @@ function M.create(data, characterId, w)
         end
         return characterData.statistics[statisticTypeId].maximum
     end
+    function instance:getStatisticMinimum(statisticTypeId)
+        local characterData = self:getCharacterData()
+        if characterData.statistics[statisticTypeId] == nil then
+            return nil
+        end
+        return characterData.statistics[statisticTypeId].minimum
+    end
     return instance
 end
 return M

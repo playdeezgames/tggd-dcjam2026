@@ -59,10 +59,13 @@ local function drawStats()
     y = y + 1
     framebuffer.writeText(x,y,"Health: "..avatar:getStatistic(statistictypes.HEALTH).."/"..avatar:getStatisticMaximum(statistictypes.HEALTH),colors.LIGHT_RED,colors.BLACK)
 end
-local function navigationStateStartHandler(state)
+local function refresh()
     framebuffer.clear(1, colors.BLACK, colors.BLACK)
     drawRoom()
     drawStats()
+end
+local function navigationStateStartHandler(state)
+    refresh()
 end
 local function navigationStateStopHandler(state)
 end
@@ -74,13 +77,13 @@ local function navigationStateCommandHandler(state, command)
     assert(avatar, "avatar should exist")
     if command == commands.LEFT then
         avatar:doVerb(verbs.TURN_LEFT)
-        drawRoom()
+        refresh()
     elseif command == commands.RIGHT then
         avatar:doVerb(verbs.TURN_RIGHT)
-        drawRoom()
+        refresh()
     elseif command == commands.UP then
         avatar:doVerb(verbs.MOVE)
-        drawRoom()
+        refresh()
     end
     return nil
 end
