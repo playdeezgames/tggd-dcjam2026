@@ -102,6 +102,18 @@ function M.create(data, characterId, w)
             return i
         end
     end
+    function instance:setTag(tagType)
+        local characterData = self:getCharacterData()
+        characterData.tags[tagType] = true
+    end
+    function instance:clearTag(tagType)
+        local characterData = self:getCharacterData()
+        characterData.tags[tagType] = nil
+    end
+    function instance:getTag(tagType)
+        local characterData = self:getCharacterData()
+        return characterData.tags[tagType] ~= nil
+    end
     return instance
 end
 return M
