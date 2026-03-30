@@ -5,6 +5,7 @@ function M.create()
     instance.characters = {}
     instance.routes = {}
     instance.avatarId = nil
+    instance.inventories = {}
     return instance
 end
 return M

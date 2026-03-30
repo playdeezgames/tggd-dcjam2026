@@ -2,6 +2,7 @@ local worldinitializer = require "business.worldinitializer"
 local location = require "business.location"
 local character = require("business.character")
 local route     = require("business.route")
+local inventory = require("business.inventory")
 local M = {}
 function M.create(data)
     local instance = {}
@@ -12,6 +13,7 @@ function M.create(data)
     function instance:clear()
         self.data.avatarId = nil
         self.data.characters = {}
+        self.data.inventories = {}
         self.data.locations = {}
         self.data.routes = {}
     end
@@ -78,6 +80,16 @@ function M.create(data)
             return self:getCharacter(avatarId)
         end
         return nil
+    end
+    function instance:createInventory()
+        local inventoryId = #self.data.inventories + 1
+        self.data.inventories[inventoryId] = {
+            items = {}
+        }
+        return self:getInventory(inventoryId)
+    end
+    function instance:getInventory(inventoryId)
+        return inventory.create(self.data, inventoryId, self)
     end
     return instance
 end
