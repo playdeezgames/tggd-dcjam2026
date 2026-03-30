@@ -29,7 +29,9 @@ function M.create(data)
             characters = {},
             routes = {}
         }
-        return self:getLocation(locationId)
+        local result = self:getLocation(locationId)
+        result:initialize()
+        return result
     end
     function instance:getLocation(locationId)
         return location.create(self.data, locationId, self)

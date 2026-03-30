@@ -1,3 +1,4 @@
+local locationtypemanager = require("business.locationtypemanager")
 local M = {}
 function M.create(data, locationId, w)
     local instance = {
@@ -30,6 +31,24 @@ function M.create(data, locationId, w)
             return self.world:getRoute(routeId)
         end
         return nil
+    end
+    function instance:getInventory()
+        local locationData = self:getLocationData()
+        local inventoryId = locationData.inventoryId
+        if inventoryId ~= nil then
+            return self.world:getInventory(inventoryId)
+        else
+            local i = self.world:createInventory()
+            locationData.inventoryId = i:getInventoryId()
+            return i
+        end
+    end
+    function instance:getLocationType()
+        return self:getLocationData().locationType
+    end
+    function instance:initialize()
+        local lt = locationtypemanager.getLocationType(self:getLocationType())
+        lt:initialize(self)
     end
     return instance
 end
