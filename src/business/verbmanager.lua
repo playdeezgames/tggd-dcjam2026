@@ -4,6 +4,7 @@ local turnrightverb= require "business.verbs.turnrightverb"
 local moveverb     = require "business.verbs.moveverb"
 local starveverb   = require "business.verbs.starveverb"
 local leaveactionmenuverb = require "business.verbs.leaveactionmenuverb"
+local enterinventoryverb  = require "business.verbs.enterinventoryverb"
 local M = {}
 local repository = {}
 local function loadVerb(verbId, newVerb)
@@ -15,6 +16,7 @@ function M.load()
     loadVerb(verbs.MOVE, moveverb.create())
     loadVerb(verbs.STARVE, starveverb.create())
     loadVerb(verbs.LEAVE_ACTION_MENU, leaveactionmenuverb.create())
+    loadVerb(verbs.ENTER_INVENTORY, enterinventoryverb.create())
 end
 function M.getVerb(verbId)
     return repository[verbId]

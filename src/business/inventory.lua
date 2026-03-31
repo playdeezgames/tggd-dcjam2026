@@ -17,6 +17,9 @@ function M.create(data, inventoryId, w)
     function instance:removeItem(i)
         self:getInventoryData().items[i:getItemId()] = nil
     end
+    function instance:hasItems()
+        return next(self:getInventoryData().items) ~= nil
+    end
     return instance
 end
 return M
