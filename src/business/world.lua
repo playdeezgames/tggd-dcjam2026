@@ -3,6 +3,7 @@ local location = require "business.location"
 local character = require("business.character")
 local route     = require("business.route")
 local inventory = require("business.inventory")
+local item      = require("business.item")
 local M = {}
 function M.create(data)
     local instance = {}
@@ -16,6 +17,7 @@ function M.create(data)
         self.data.inventories = {}
         self.data.locations = {}
         self.data.routes = {}
+        self.data.items = {}
     end
     function instance:abandon()
         self:clear()
@@ -65,6 +67,18 @@ function M.create(data)
         }
         local result = route.create(self.data, routeId, self)
         fromLocation:setRoute(direction, result)
+        return result
+    end
+    function instance:createItem(itemType, toInventory)
+        local itemId = #self.data.items + 1
+        local inventoryId = toInventory:getInventoryId()
+        self.data.items[itemId] = {
+            itemType = itemType,
+            inventoryId = inventoryId
+        }
+        local result = item.create(self.data, itemId, self)
+        toInventory:addItem(result)
+        result:initialize()
         return result
     end
     function instance:getRoute(routeId)

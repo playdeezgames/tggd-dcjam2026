@@ -5,6 +5,7 @@ local verbmanager   = require "business.verbmanager"
 local routetypemanager = require "business.routetypemanager"
 local charactertypemanager = require "business.charactertypemanager"
 local locationtypemanager  = require "business.locationtypemanager"
+local itemtypemanager      = require "business.itemtypemanager"
 if arg[#arg] == "debug" then
     require("lldebugger").start()
 end
@@ -36,6 +37,7 @@ function love.load()
     verbmanager.load()
     charactertypemanager.load()
     locationtypemanager.load()
+    itemtypemanager.load()
     --set state as last thing
     statemanager.setState(states.TITLE)
 end

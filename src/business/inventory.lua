@@ -11,6 +11,12 @@ function M.create(data, inventoryId, w)
     function instance:getInventoryData()
         return self.data.inventories[self:getInventoryId()]
     end
+    function instance:addItem(i)
+        self:getInventoryData().items[i:getItemId()] = true
+    end
+    function instance:removeItem(i)
+        self:getInventoryData().items[i:getItemId()] = nil
+    end
     return instance
 end
 return M

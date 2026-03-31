@@ -7,6 +7,9 @@ function M.create(data, characterId, w)
         characterId = characterId,
         world = w
     }
+    function instance:getWorld()
+        return self.world
+    end
     function instance:getCharacterId()
         return self.characterId
     end

@@ -1,5 +1,6 @@
 local charactertype = require "business.charactertype"
 local statistictypes= require "business.statistictypes"
+local itemtypes     = require "business.itemtypes"
 local M = {}
 local SATIETY_MAXIMUM = 100
 local HEALTH_MAXIMUM = 100
@@ -11,6 +12,8 @@ local function initializeHandler(c)
     c:setStatisticMinimum(statistictypes.HEALTH, 0)
     c:setStatisticMaximum(statistictypes.HEALTH, HEALTH_MAXIMUM)
     c:setStatistic(statistictypes.HEALTH, HEALTH_MAXIMUM)
+
+    c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
 end
 function M.create()
     local instance = charactertype.create(initializeHandler)
