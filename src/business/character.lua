@@ -24,7 +24,7 @@ function M.create(data, characterId, w)
     function instance:setFacing(newFacing)
         self:getCharacterData().facing = newFacing
     end
-    function instance:doVerb(verbId)
+    function instance:perform(verbId)
         local v = verbmanager.getVerb(verbId)
         v:perform(self)
     end
@@ -113,6 +113,9 @@ function M.create(data, characterId, w)
     function instance:getTag(tagType)
         local characterData = self:getCharacterData()
         return characterData.tags[tagType] ~= nil
+    end
+    function instance:canSelect(verbId)
+        return verbmanager.getVerb(verbId):canSelect(self)
     end
     return instance
 end

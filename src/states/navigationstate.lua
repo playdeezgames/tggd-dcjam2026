@@ -61,15 +61,15 @@ local function navigationStateCommandHandler(state, command)
     local avatar = w:getAvatar()
     assert(avatar, "avatar should exist")
     if command == commands.LEFT then
-        avatar:doVerb(verbs.TURN_LEFT)
+        avatar:perform(verbs.TURN_LEFT)
         refresh()
         return neutral.nextState(w)
     elseif command == commands.RIGHT then
-        avatar:doVerb(verbs.TURN_RIGHT)
+        avatar:perform(verbs.TURN_RIGHT)
         refresh()
         return neutral.nextState(w)
     elseif command == commands.UP then
-        avatar:doVerb(verbs.MOVE)
+        avatar:perform(verbs.MOVE)
         refresh()
         return neutral.nextState(w)
     elseif command == commands.GREEN then

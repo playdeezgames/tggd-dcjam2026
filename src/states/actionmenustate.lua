@@ -1,33 +1,43 @@
-local M = {}
-local commands = require "ui.commands"
-local framebuffer = require "ui.framebuffer"
-local colors = require "ui.colors"
-local neutral = require "states.neutral"
 local worldmanager = require "business.worldmanager"
-local state = require "states.state"
-local tags  = require "business.tags"
-local function updateHandler(state, dt)
-end
-local function commandHandler(state, command)
+local neutral      = require "states.neutral"
+local tags         = require "business.tags"
+local verbs        = require "business.verbs"
+local verbmanager  = require "business.verbmanager"
+local M = {}
+M.VERBS = {
+    verbs.LEAVE_ACTION_MENU    
+}
+local menustate = require("states.menustate")
+local menu = require("ui.menu")
+local menuitem = require("ui.menuitem")
+local colors = require("ui.colors")
+local function createMenuHandler(state)
     local w = worldmanager.getWorld()
-    if command == commands.GREEN then
-        w:getAvatar():clearTag(tags.ACTION_MENU)
-        return neutral.nextState(w)
+    local avatar = w:getAvatar()
+    assert(avatar, "avatar should not be nil")
+    local result = menu.create(0,0,"Action Menu", colors.BROWN, colors.BLACK)
+    for _, v in ipairs(M.VERBS) do
+        if avatar:canSelect(v) then
+            result:addItem(menuitem.create(v,verbmanager.getVerb(v):getText(), colors.WHITE, colors.BLACK))
+        end
     end
-    return nil
+    return result
 end
-local function startHandler(state)
-    framebuffer.clear(1, colors.BLACK, colors.BLACK)
-    framebuffer.writeText(0,0,"Action Menu", colors.BROWN, colors.BLACK)
+local function itemHandler(state,itemId)
+    local w = worldmanager.getWorld()
+    w:getAvatar():perform(itemId)
+    return neutral.nextState(w)
 end
-local function stopHandler(state)
+local function cancelHandler(state)
+    local w = worldmanager.getWorld()
+    w:getAvatar():clearTag(tags.ACTION_MENU)
+    return neutral.nextState(w)
 end
 function M.create()
-    local instance = state.create(
-        startHandler,
-        stopHandler,
-        updateHandler,
-        commandHandler)
+    local instance = menustate.create(
+        createMenuHandler,
+        itemHandler,
+        cancelHandler)
     return instance
 end
 return M

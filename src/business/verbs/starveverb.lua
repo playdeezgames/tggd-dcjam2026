@@ -1,5 +1,6 @@
 local verb = require "business.verb"
 local statistictypes = require "business.statistictypes"
+local tags = require "business.tags"
 local M = {}
 local function performHandler(c)
     local satiety = c:getStatistic(statistictypes.SATIETY)
@@ -21,8 +22,11 @@ local function performHandler(c)
         end
     end
 end
+local function canSelectHandler(c)
+    return not c:getTag(tags.ACTION_MENU)
+end
 function M.create()
-    local instance = verb.create(performHandler)
+    local instance = verb.create("Starve!", performHandler, canSelectHandler)
     return instance
 end
 return M
