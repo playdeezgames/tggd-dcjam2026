@@ -12,6 +12,8 @@ function M.nextState(w)
     end
     if avatar:getTag(tags.ACTION_MENU) then
         return states.ACTION_MENU
+    elseif avatar:getTag(tags.INVENTORY) then
+        return states.INVENTORY
     end
     return states.NAVIGATION
 end

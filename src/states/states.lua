@@ -5,4 +5,5 @@ M.ABOUT = "about"
 M.NAVIGATION = "navigation"
 M.GAME_OVER = "game over"
 M.ACTION_MENU = "action menu"
+M.INVENTORY = "inventory"
 return M

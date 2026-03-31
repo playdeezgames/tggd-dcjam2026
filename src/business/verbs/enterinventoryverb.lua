@@ -2,6 +2,8 @@ local verb = require "business.verb"
 local tags = require "business.tags"
 local M = {}
 local function performHandler(c)
+    c:clearTag(tags.ACTION_MENU)
+    c:setTag(tags.INVENTORY)
 end
 local function canSelectHandler(c)
     return c:getTag(tags.ACTION_MENU) and c:getInventory():hasItems()
