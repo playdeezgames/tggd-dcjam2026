@@ -78,7 +78,16 @@ function M.create(data, characterId, w)
         if characterData.statistics[statisticTypeId] == nil then
             return nil
         end
-        return characterData.statistics[statisticTypeId].value
+        local result = characterData.statistics[statisticTypeId].value
+        local maximum = self:getStatisticMaximum(statisticTypeId)
+        if maximum ~= nil and result > maximum then
+            result = maximum
+        end
+        local minimum = self:getStatisticMinimum(statisticTypeId)
+        if minimum ~= nil and result < minimum then
+            result = minimum
+        end
+        return result
     end
     function instance:getStatisticMaximum(statisticTypeId)
         local characterData = self:getCharacterData()
@@ -134,6 +143,12 @@ function M.create(data, characterId, w)
     end
     function instance:getItemsOfType(itemTypeId)
         return self:getInventory():getItemsOfType(itemTypeId)
+    end
+    function instance:changeStatistic(statisticTypeId, delta)
+        self:setStatistic(statisticTypeId, self:getStatistic(statisticTypeId) + delta)
+    end
+    function instance:removeItem(i)
+        self:getInventory():removeItem(i)
     end
     return instance
 end

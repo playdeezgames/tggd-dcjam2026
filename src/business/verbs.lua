@@ -5,4 +5,5 @@ M.MOVE = "move"
 M.STARVE = "starve"
 M.LEAVE_ACTION_MENU = "leave action menu"
 M.ENTER_INVENTORY = "enter inventory"
+M.EAT = "eat"
 return M

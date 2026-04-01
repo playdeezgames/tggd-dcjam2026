@@ -42,6 +42,8 @@ local function drawStats()
 
     framebuffer.writeText(x,y,"Satiety: "..avatar:getStatistic(statistictypes.SATIETY).."/"..avatar:getStatisticMaximum(statistictypes.SATIETY),colors.MAGENTA,colors.BLACK)
     y = y + 1
+    framebuffer.writeText(x,y,"Stomach: "..avatar:getStatistic(statistictypes.STOMACH),colors.LIGHT_MAGENTA,colors.BLACK)
+    y = y + 1
     framebuffer.writeText(x,y,"Health: "..avatar:getStatistic(statistictypes.HEALTH).."/"..avatar:getStatisticMaximum(statistictypes.HEALTH),colors.LIGHT_RED,colors.BLACK)
 end
 local function refresh()

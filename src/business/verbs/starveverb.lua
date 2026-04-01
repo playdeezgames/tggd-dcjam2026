@@ -7,17 +7,35 @@ local function performHandler(c)
     if satiety == nil then
         return
     end
-    local minimumSatiety = c:getStatisticMinimum(statistictypes.SATIETY)
-    if satiety > minimumSatiety then
-        satiety = satiety - 1
-        c:setStatistic(statistictypes.SATIETY, satiety)
+    local stomach = c:getStatistic(statistictypes.STOMACH)
+    local delta = -1
+    if stomach > 0 then
+        delta = 1
+        c:setStatistic(statistictypes.STOMACH, stomach - 1)
+    end
+    if delta < 0 then
+        local minimumSatiety = c:getStatisticMinimum(statistictypes.SATIETY)
+        if satiety > minimumSatiety then
+            satiety = satiety + delta
+            c:setStatistic(statistictypes.SATIETY, satiety)
+        else
+            local health = c:getStatistic(statistictypes.HEALTH)
+            assert(health, "all characters should have health")
+            local minimumHealth = c:getStatisticMinimum(statistictypes.HEALTH)
+            assert(minimumHealth, "all characters should have a minimum health")
+            if health > minimumHealth then
+                health = health + delta
+                c:setStatistic(statistictypes.HEALTH, health)
+            end
+        end
     else
-        local health = c:getStatistic(statistictypes.HEALTH)
-        assert(health, "all characters should have health")
-        local minimumHealth = c:getStatisticMinimum(statistictypes.HEALTH)
-        assert(minimumHealth, "all characters should have a minimum health")
-        if health > minimumHealth then
-            health = health - 1
+        local maximumSatiety = c:getStatisticMaximum(statistictypes.SATIETY)
+        if satiety < maximumSatiety then
+            satiety = satiety + delta
+            c:setStatistic(statistictypes.SATIETY, satiety)
+        else
+            local health = c:getStatistic(statistictypes.HEALTH)
+            health = health + delta
             c:setStatistic(statistictypes.HEALTH, health)
         end
     end

@@ -21,6 +21,13 @@ function M.create(data, itemId, w)
     function instance:getName()
         return itemtypemanager.getItemType(self:getItemType()):getName(self)
     end
+    function instance:getVerbs(c)
+        return itemtypemanager.getItemType(self:getItemType()):getVerbs(c)
+    end
+    function instance:recycle()
+        self.data.items[self:getItemId()] = {}
+        table.insert(self.data.recycled_items, self:getItemId())
+    end
     return instance
 end
 return M

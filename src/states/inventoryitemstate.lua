@@ -2,6 +2,7 @@ local metadatas = require "business.metadatas"
 local neutral   = require "states.neutral"
 local itemtypemanager = require "business.itemtypemanager"
 local yokes           = require "business.yokes"
+local verbmanager     = require "business.verbmanager"
 local M = {}
 M.NEVER_MIND = "never mind"
 local menustate = require "states.menustate"
@@ -20,6 +21,12 @@ local function createMenuHandler(state)
     local result = menu.create(0,0,i:getName(), colors.BROWN, colors.BLACK)
     result:addItem(menuitem.create(M.NEVER_MIND,"Never Mind", colors.WHITE, colors.BLACK))
 
+    local verbIds = i:getVerbs(avatar)
+    for _, verbId in ipairs(verbIds) do
+        local vt = verbmanager.getVerb(verbId)
+        result:addItem(menuitem.create(verbId, vt:getText(), colors.WHITE, colors.BLACK))
+    end
+
     return result
 end
 local function itemHandler(state,menuItemId)
@@ -28,6 +35,8 @@ local function itemHandler(state,menuItemId)
     assert(avatar, "avatar should not be nil")
     if menuItemId == M.NEVER_MIND then
         avatar:setYoke(yokes.ITEM_ID, nil)
+    else
+        avatar:perform(menuItemId)
     end
     return neutral.nextState(w)
 end

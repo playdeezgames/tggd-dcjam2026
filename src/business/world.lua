@@ -18,6 +18,7 @@ function M.create(data)
         self.data.locations = {}
         self.data.routes = {}
         self.data.items = {}
+        self.data.recycled_items = {}
     end
     function instance:abandon()
         self:clear()
