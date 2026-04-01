@@ -18,6 +18,9 @@ function M.create(data, itemId, w)
     function instance:initialize()
         itemtypemanager.getItemType(self:getItemType()):initialize(self)
     end
+    function instance:getName()
+        return itemtypemanager.getItemType(self:getItemType()):getName(self)
+    end
     return instance
 end
 return M

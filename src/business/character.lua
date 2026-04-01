@@ -120,6 +120,21 @@ function M.create(data, characterId, w)
     function instance:canSelect(verbId)
         return verbmanager.getVerb(verbId):canSelect(self)
     end
+    function instance:getMetadata(metadataId)
+        return self:getCharacterData().metadatas[metadataId]
+    end
+    function instance:setMetadata(metadataId, metadataValue)
+        self:getCharacterData().metadatas[metadataId] = metadataValue
+    end
+    function instance:getYoke(yokeId)
+        return self:getCharacterData().yokes[yokeId]
+    end
+    function instance:setYoke(yokeId, yokeValue)
+        self:getCharacterData().yokes[yokeId] = yokeValue
+    end
+    function instance:getItemsOfType(itemTypeId)
+        return self:getInventory():getItemsOfType(itemTypeId)
+    end
     return instance
 end
 return M

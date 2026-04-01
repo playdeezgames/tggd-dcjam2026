@@ -45,7 +45,9 @@ function M.create(data)
             locationId = initialLocation:getLocationId(),
             facing = facing,
             statistics = {},
-            tags = {}
+            tags = {},
+            metadatas = {},
+            yokes = {}
         }
         local result = self:getCharacter(characterId)
         initialLocation:addCharacter(result)
@@ -80,6 +82,9 @@ function M.create(data)
         toInventory:addItem(result)
         result:initialize()
         return result
+    end
+    function instance:getItem(itemId)
+        return item.create(self.data, itemId, self)
     end
     function instance:getRoute(routeId)
         return route.create(self.data, routeId, self)

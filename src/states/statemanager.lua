@@ -8,6 +8,8 @@ local commandbuffer = require("ui.commandbuffer")
 local gameoverstate = require("states.gameoverstate")
 local actionmenustate = require("states.actionmenustate")
 local inventorystate = require("states.inventorystate")
+local inventoryitemstackstate = require("states.inventoryitemstackstate")
+local inventoryitemstate = require("states.inventoryitemstate")
 local repository = {}
 local currentStateId = nil
 local function loadState(stateId, state)
@@ -21,6 +23,8 @@ function M.load()
     loadState(states.GAME_OVER, gameoverstate.create())
     loadState(states.ACTION_MENU, actionmenustate.create())
     loadState(states.INVENTORY, inventorystate.create())
+    loadState(states.INVENTORY_ITEM_STACK, inventoryitemstackstate.create())
+    loadState(states.INVENTORY_ITEM, inventoryitemstate.create())
 end
 local function handleCommand(command)
     if currentStateId ~= nil then
