@@ -14,6 +14,8 @@ local function initializeHandler(c)
     c:setStatistic(statistictypes.HEALTH, HEALTH_MAXIMUM)
 
     c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
+    c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
+    c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
 end
 function M.create()
     local instance = charactertype.create(initializeHandler)
