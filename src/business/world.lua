@@ -76,6 +76,9 @@ function M.create(data)
     end
     function instance:createItem(itemType, toInventory)
         local itemId = #self.data.items + 1
+        if next(self.data.recycled_items, nil) ~= nil then
+            itemId = table.remove(self.data.recycled_items)
+        end
         local inventoryId = toInventory:getInventoryId()
         self.data.items[itemId] = {
             itemType = itemType,

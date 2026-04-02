@@ -6,4 +6,6 @@ M.STARVE = "starve"
 M.LEAVE_ACTION_MENU = "leave action menu"
 M.ENTER_INVENTORY = "enter inventory"
 M.EAT = "eat"
+M.CLEAN = "clean"
+M.RINSE = "rinse"
 return M

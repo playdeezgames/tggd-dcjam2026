@@ -41,18 +41,23 @@ local function drawStats()
     assert(avatar, "avatar should not be nil")
     local l = avatar:getLocation()
 
-    framebuffer.writeText(x,y,"Location:"..l:getName(), colors.LIGHT_BLUE, colors.BLACK)
+    framebuffer.writeText(x,y,"Room:"..l:getName(), colors.LIGHT_BLUE, colors.BLACK)
     y = y + 1
     local filth = l:getStatistic(statistictypes.FILTH)
     if filth > 0 then
-        framebuffer.writeText(x,y,"Filth: "..filth,colors.BROWN,colors.BLACK)
+        framebuffer.writeText(x,y,"Room Filth: "..filth,colors.BROWN,colors.BLACK)
         y = y + 1
     end
     framebuffer.writeText(x,y,"Satiety: "..avatar:getStatistic(statistictypes.SATIETY).."/"..avatar:getStatisticMaximum(statistictypes.SATIETY),colors.MAGENTA,colors.BLACK)
     y = y + 1
-    framebuffer.writeText(x,y,"Stomach: "..avatar:getStatistic(statistictypes.STOMACH),colors.LIGHT_MAGENTA,colors.BLACK)
-    y = y + 1
+    local stomach = avatar:getStatistic(statistictypes.STOMACH)
+    if stomach > 0 then
+        framebuffer.writeText(x,y,"Stomach: "..stomach,colors.LIGHT_MAGENTA,colors.BLACK)
+        y = y + 1
+    end
     framebuffer.writeText(x,y,"Health: "..avatar:getStatistic(statistictypes.HEALTH).."/"..avatar:getStatisticMaximum(statistictypes.HEALTH),colors.LIGHT_RED,colors.BLACK)
+    y = y + 1
+    framebuffer.writeText(x,y,"Energy: "..avatar:getStatistic(statistictypes.ENERGY).."/"..avatar:getStatisticMaximum(statistictypes.ENERGY),colors.LIGHT_CYAN,colors.BLACK)
 end
 local function refresh()
     framebuffer.clear(1, colors.BLACK, colors.BLACK)
