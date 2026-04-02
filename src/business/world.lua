@@ -30,10 +30,12 @@ function M.create(data)
             column = column,
             row = row,
             characters = {},
-            routes = {}
+            routes = {},
+            statistics = {}
         }
         local result = self:getLocation(locationId)
         result:initialize()
+        result:setName(string.char(64+column)..string.char(48+row))
         return result
     end
     function instance:getLocation(locationId)

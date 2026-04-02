@@ -39,7 +39,15 @@ local function drawStats()
     local w = worldmanager.getWorld()
     local avatar = w:getAvatar()
     assert(avatar, "avatar should not be nil")
+    local l = avatar:getLocation()
 
+    framebuffer.writeText(x,y,"Location:"..l:getName(), colors.LIGHT_BLUE, colors.BLACK)
+    y = y + 1
+    local filth = l:getStatistic(statistictypes.FILTH)
+    if filth > 0 then
+        framebuffer.writeText(x,y,"Filth: "..filth,colors.BROWN,colors.BLACK)
+        y = y + 1
+    end
     framebuffer.writeText(x,y,"Satiety: "..avatar:getStatistic(statistictypes.SATIETY).."/"..avatar:getStatisticMaximum(statistictypes.SATIETY),colors.MAGENTA,colors.BLACK)
     y = y + 1
     framebuffer.writeText(x,y,"Stomach: "..avatar:getStatistic(statistictypes.STOMACH),colors.LIGHT_MAGENTA,colors.BLACK)

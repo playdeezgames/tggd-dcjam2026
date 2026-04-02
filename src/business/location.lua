@@ -6,6 +6,12 @@ function M.create(data, locationId, w)
         locationId = locationId,
         world = w
     }
+    function instance:setName(newName)
+        self:getLocationData().name = newName
+    end
+    function instance:getName()
+        return self:getLocationData().name
+    end
     function instance:getLocationId()
         return self.locationId
     end
@@ -49,6 +55,57 @@ function M.create(data, locationId, w)
     function instance:initialize()
         local lt = locationtypemanager.getLocationType(self:getLocationType())
         lt:initialize(self)
+    end
+    function instance:getStatistic(statisticTypeId)
+        local locationData = self:getLocationData()
+        if locationData.statistics[statisticTypeId] == nil then
+            return nil
+        end
+        local result = locationData.statistics[statisticTypeId].value
+        local maximum = self:getStatisticMaximum(statisticTypeId)
+        if maximum ~= nil and result > maximum then
+            result = maximum
+        end
+        local minimum = self:getStatisticMinimum(statisticTypeId)
+        if minimum ~= nil and result < minimum then
+            result = minimum
+        end
+        return result
+    end
+    function instance:getStatisticMaximum(statisticTypeId)
+        local locationData = self:getLocationData()
+        if locationData.statistics[statisticTypeId] == nil then
+            return nil
+        end
+        return locationData.statistics[statisticTypeId].maximum
+    end
+    function instance:getStatisticMinimum(statisticTypeId)
+        local locationData = self:getLocationData()
+        if locationData.statistics[statisticTypeId] == nil then
+            return nil
+        end
+        return locationData.statistics[statisticTypeId].minimum
+    end
+    function instance:setStatisticMinimum(statisticTypeId, minimum)
+        local locationData = self:getLocationData()
+        if locationData.statistics[statisticTypeId] == nil then
+            locationData.statistics[statisticTypeId] = {}
+        end
+        locationData.statistics[statisticTypeId].minimum = minimum
+    end
+    function instance:setStatisticMaximum(statisticTypeId, maximum)
+        local locationData = self:getLocationData()
+        if locationData.statistics[statisticTypeId] == nil then
+            locationData.statistics[statisticTypeId] = {}
+        end
+        locationData.statistics[statisticTypeId].maximum = maximum
+    end
+    function instance:setStatistic(statisticTypeId, value)
+        local locationData = self:getLocationData()
+        if locationData.statistics[statisticTypeId] == nil then
+            locationData.statistics[statisticTypeId] = {}
+        end
+        locationData.statistics[statisticTypeId].value = value
     end
     return instance
 end
