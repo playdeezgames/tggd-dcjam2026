@@ -150,6 +150,9 @@ function M.create(data, characterId, w)
     function instance:removeItem(i)
         self:getInventory():removeItem(i)
     end
+    function instance:addItem(i)
+        self:getInventory():addItem(i)
+    end
     return instance
 end
 return M

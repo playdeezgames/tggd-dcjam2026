@@ -125,6 +125,9 @@ function M.create(data, locationId, w)
     function instance:getItemsOfType(itemTypeId)
         return self:getInventory():getItemsOfType(itemTypeId)
     end
+    function instance:removeItem(i)
+        self:getInventory():removeItem(i)
+    end
     return instance
 end
 return M

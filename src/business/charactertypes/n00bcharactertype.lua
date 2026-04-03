@@ -20,14 +20,6 @@ local function initializeHandler(c)
 
     c:setStatisticMinimum(statistictypes.STOMACH, 0)
     c:setStatistic(statistictypes.STOMACH, 0)
-
-    c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
-    c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
-    c:getWorld():createItem(itemtypes.FOOD, c:getInventory())
-
-    c:getWorld():createItem(itemtypes.RAG, c:getInventory())
-    c:getWorld():createItem(itemtypes.RAG, c:getInventory())
-    c:getWorld():createItem(itemtypes.RAG, c:getInventory())
 end
 function M.create()
     local instance = charactertype.create(initializeHandler)

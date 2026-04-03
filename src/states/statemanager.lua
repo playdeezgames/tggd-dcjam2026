@@ -12,6 +12,7 @@ local inventoryitemstackstate = require("states.inventoryitemstackstate")
 local inventoryitemstate = require("states.inventoryitemstate")
 local groundinventorystate = require("states.groundinventorystate")
 local groundinventoryitemstackstate = require("states.groundinventoryitemstackstate")
+local groundinventoryitemstate = require("states.groundinventoryitemstate")
 local repository = {}
 local currentStateId = nil
 local function loadState(stateId, state)
@@ -29,7 +30,7 @@ function M.load()
     loadState(states.INVENTORY_ITEM, inventoryitemstate.create())
     loadState(states.GROUND_INVENTORY, groundinventorystate.create())
     loadState(states.GROUND_INVENTORY_ITEM_STACK, groundinventoryitemstackstate.create())
-    --TODO: ground inventory item
+    loadState(states.GROUND_INVENTORY_ITEM, groundinventoryitemstate.create())
 end
 local function handleCommand(command)
     if currentStateId ~= nil then
