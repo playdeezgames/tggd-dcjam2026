@@ -6,7 +6,8 @@ local verbmanager  = require "business.verbmanager"
 local M = {}
 M.VERBS = {
     verbs.LEAVE_ACTION_MENU,
-    verbs.ENTER_INVENTORY
+    verbs.ENTER_INVENTORY,
+    verbs.REST
 }
 local menustate = require("states.menustate")
 local menu = require("ui.menu")

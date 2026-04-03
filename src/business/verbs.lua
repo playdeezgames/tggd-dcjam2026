@@ -8,4 +8,5 @@ M.ENTER_INVENTORY = "enter inventory"
 M.EAT = "eat"
 M.CLEAN = "clean"
 M.RINSE = "rinse"
+M.REST = "rest"
 return M

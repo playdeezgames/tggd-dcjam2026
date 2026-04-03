@@ -8,6 +8,7 @@ local enterinventoryverb  = require "business.verbs.enterinventoryverb"
 local eatverb = require "business.verbs.eatverb"
 local cleanverb = require "business.verbs.cleanverb"
 local rinseverb = require "business.verbs.rinseverb"
+local restverb = require "business.verbs.restverb"
 local M = {}
 local repository = {}
 local function loadVerb(verbId, newVerb)
@@ -23,6 +24,7 @@ function M.load()
     loadVerb(verbs.EAT, eatverb.create())
     loadVerb(verbs.CLEAN, cleanverb.create())
     loadVerb(verbs.RINSE, rinseverb.create())
+    loadVerb(verbs.REST, restverb.create())
 end
 function M.getVerb(verbId)
     return repository[verbId]
