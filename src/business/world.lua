@@ -31,7 +31,8 @@ function M.create(data)
             row = row,
             characters = {},
             routes = {},
-            statistics = {}
+            statistics = {},
+            tags = {}
         }
         local result = self:getLocation(locationId)
         result:initialize()

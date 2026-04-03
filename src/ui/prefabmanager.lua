@@ -3,8 +3,8 @@ local repository = {}
 local prefabs = require "ui.prefabs"
 local prefab = require "ui.prefab"
 local colors  = require "ui.colors"
-local function createPrefab(prefabId, texts, foreground, background)
-    repository[prefabId] = prefab.create(texts, foreground, background)
+local function createPrefab(prefabId, texts, foreground, background, transparent)
+    repository[prefabId] = prefab.create(texts, foreground, background, transparent)
 end
 function M.load()
     createPrefab(
@@ -163,6 +163,29 @@ function M.load()
     }, 
     colors.BLUE, 
     colors.LIGHT_BLUE)
+    createPrefab(
+    prefabs.DEEP_SINK,
+    {
+"................",
+"................",
+"................",
+"................",
+"................",
+"................",
+".......\xdb........",
+"...\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb....",
+"...\xdb   \xdb   \xdb....",
+"...\xdb       \xdb....",
+"...\xdb \xdb\xdb\xdb\xdb\xdb \xdb....",
+"...\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb....",
+"...         ....",
+"...\xdb \xdb\xdb\xdb\xdb\xdb \xdb....",
+"...\xdb \xdb\xdb\xdb\xdb\xdb \xdb....",
+"...\xdb       \xdb...."
+    }, 
+    colors.DARK_GRAY ,
+    colors.LIGHT_GRAY,
+    ".")
 end
 function M.getPrefab(prefabId)
     return repository[prefabId]

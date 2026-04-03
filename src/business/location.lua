@@ -107,6 +107,18 @@ function M.create(data, locationId, w)
         end
         locationData.statistics[statisticTypeId].value = value
     end
+    function instance:setTag(tagType)
+        local locationData = self:getLocationData()
+        locationData.tags[tagType] = true
+    end
+    function instance:clearTag(tagType)
+        local locationData = self:getLocationData()
+        locationData.tags[tagType] = nil
+    end
+    function instance:getTag(tagType)
+        local locationData = self:getLocationData()
+        return locationData.tags[tagType] ~= nil
+    end
     return instance
 end
 return M

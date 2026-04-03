@@ -29,13 +29,13 @@ end
 function M.clear(tileId, foreground, background)
     M.fill(0, 0, constants.CELL_COLUMNS, constants.CELL_ROWS, tileId, foreground, background)
 end
-function M.writeText(column, row, text, foreground, background)
+function M.writeText(column, row, text, foreground, background, transparent)
     assert(text,"must provide text to writetext")
     assert(foreground,"must provide foreground color to writetext")
     assert(background,"must provide background color to writetext")
     for index = 1, #text do
         local cell = M.getCell(column, row)
-        if cell ~= nil then
+        if cell ~= nil and (transparent == nil or transparent ~= text:sub(index,index)) then
             cell.tileId = text:byte(index) + 1
             cell.foreground = foreground
             cell.background = background

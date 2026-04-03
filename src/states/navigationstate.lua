@@ -21,6 +21,8 @@ M.RIGHT_PREFAB_X = 15
 M.RIGHT_PREFAB_Y = 0
 M.STATS_PANEL_X = 20
 M.STATS_PANEL_Y = 0
+M.FEATURE_PREFAB_X = 2
+M.FEATURE_PREFAB_Y = 2
 local function drawRoom()
     local w = worldmanager.getWorld()
     local avatar = w:getAvatar()
@@ -33,6 +35,9 @@ local function drawRoom()
     prefabmanager.getPrefab(cell:getRoute(left):getLeftPrefab()):draw(M.LEFT_PREFAB_X,M.LEFT_PREFAB_Y)
     prefabmanager.getPrefab(cell:getRoute(ahead):getAheadPrefab()):draw(M.AHEAD_PREFAB_X,M.AHEAD_PREFAB_Y)
     prefabmanager.getPrefab(cell:getRoute(right):getRightPrefab()):draw(M.RIGHT_PREFAB_X,M.RIGHT_PREFAB_Y)
+    if cell:getTag(tags.DEEP_SINK) then
+        prefabmanager.getPrefab(prefabs.DEEP_SINK):draw(M.FEATURE_PREFAB_X,M.FEATURE_PREFAB_Y)
+    end
 end
 local function drawStats()
     local x, y = M.STATS_PANEL_X, M.STATS_PANEL_Y
@@ -43,6 +48,10 @@ local function drawStats()
 
     framebuffer.writeText(x,y,"Room:"..l:getName(), colors.LIGHT_BLUE, colors.BLACK)
     y = y + 1
+    if l:getTag(tags.DEEP_SINK) then
+        framebuffer.writeText(x,y,"Deep Sink",colors.DARK_GRAY,colors.BLACK)
+        y = y + 1
+    end
     local filth = l:getStatistic(statistictypes.FILTH)
     if filth > 0 then
         framebuffer.writeText(x,y,"Room Filth: "..filth,colors.BROWN,colors.BLACK)

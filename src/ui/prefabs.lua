@@ -5,4 +5,5 @@ M.RIGHT_WALL = "right wall"
 M.AHEAD_DOOR = "ahead door"
 M.LEFT_DOOR = "left door"
 M.RIGHT_DOOR = "right door"
+M.DEEP_SINK = "deep sink"
 return M

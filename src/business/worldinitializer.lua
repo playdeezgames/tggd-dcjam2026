@@ -6,6 +6,20 @@ local locationtypes = require("business.locationtypes")
 local charactertypes = require("business.charactertypes")
 local rng           = require("utility.rng")
 local routetypes    = require("business.routetypes")
+local tags          = require("business.tags")
+local DEEP_SINK_COUNT = 5
+local function spawnDeepSinks(map)
+    local deepSinkCount = DEEP_SINK_COUNT
+    while deepSinkCount > 0 do
+        local column = rng.fromRange(1, #map)
+        local row = rng.fromRange(1, #map[column])
+        local l = map[column][row]
+        if not l:getTag(tags.DEEP_SINK) then
+            l:setTag(tags.DEEP_SINK)
+            deepSinkCount = deepSinkCount - 1
+        end
+    end
+end
 local function createLocationMap(w, m)
     local map = {}
     for column = 1, m:getColumns() do
@@ -14,6 +28,10 @@ local function createLocationMap(w, m)
             map[column][row] = w:createLocation(locationtypes.GENERIC, column, row)
         end
     end
+    spawnDeepSinks(map)
+    --TODO: tag sleep places
+    --TODO: spawn rags
+    --TODO: spawn food
     return map
 end
 local function createRoutes(w, map, m, walker)
