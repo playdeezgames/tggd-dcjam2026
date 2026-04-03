@@ -122,6 +122,9 @@ function M.create(data, locationId, w)
     function instance:hasItems()
         return self:getInventory():hasItems()
     end
+    function instance:getItemsOfType(itemTypeId)
+        return self:getInventory():getItemsOfType(itemTypeId)
+    end
     return instance
 end
 return M
