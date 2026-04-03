@@ -8,6 +8,7 @@ local rng           = require("utility.rng")
 local routetypes    = require("business.routetypes")
 local tags          = require("business.tags")
 local DEEP_SINK_COUNT = 5
+local BED_COUNT = 2
 local function spawnDeepSinks(map)
     local deepSinkCount = DEEP_SINK_COUNT
     while deepSinkCount > 0 do
@@ -20,6 +21,18 @@ local function spawnDeepSinks(map)
         end
     end
 end
+local function spawnBeds(map)
+    local bedCount = BED_COUNT
+    while bedCount > 0 do
+        local column = rng.fromRange(1, #map)
+        local row = rng.fromRange(1, #map[column])
+        local l = map[column][row]
+        if not l:getTag(tags.BED) then
+            l:setTag(tags.BED)
+            bedCount = bedCount - 1
+        end
+    end
+end
 local function createLocationMap(w, m)
     local map = {}
     for column = 1, m:getColumns() do
@@ -29,7 +42,7 @@ local function createLocationMap(w, m)
         end
     end
     spawnDeepSinks(map)
-    --TODO: tag sleep places
+    spawnBeds(map)
     --TODO: spawn rags
     --TODO: spawn food
     return map

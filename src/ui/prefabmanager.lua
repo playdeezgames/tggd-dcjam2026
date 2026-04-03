@@ -186,6 +186,29 @@ function M.load()
     colors.DARK_GRAY ,
     colors.LIGHT_GRAY,
     ".")
+    createPrefab(
+    prefabs.BED, 
+    {
+"................",
+"................",
+"................",
+"................",
+"................",
+"......\xdb\xdb\xdb\xdb......",
+"....\xdb \xdb\xdb\xdb\xdb \xdb....",
+"....\xdb      \xdb....",
+".... \xdb\xdb\xdb\xdb\xdb\xdb ....",
+"....\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb....",
+"....\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb....",
+"....\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb....",
+"....        ....",
+"....\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb....",
+"....  ....  ....",
+"....\xdb\xdb....\xdb\xdb...."
+    }, 
+    colors.GREEN,
+    colors.BLACK,
+    ".")
 end
 function M.getPrefab(prefabId)
     return repository[prefabId]

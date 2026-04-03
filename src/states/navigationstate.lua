@@ -38,6 +38,9 @@ local function drawRoom()
     if cell:getTag(tags.DEEP_SINK) then
         prefabmanager.getPrefab(prefabs.DEEP_SINK):draw(M.FEATURE_PREFAB_X,M.FEATURE_PREFAB_Y)
     end
+    if cell:getTag(tags.BED) then
+        prefabmanager.getPrefab(prefabs.BED):draw(M.FEATURE_PREFAB_X,M.FEATURE_PREFAB_Y)
+    end
 end
 local function drawStats()
     local x, y = M.STATS_PANEL_X, M.STATS_PANEL_Y
@@ -50,6 +53,10 @@ local function drawStats()
     y = y + 1
     if l:getTag(tags.DEEP_SINK) then
         framebuffer.writeText(x,y,"Deep Sink",colors.DARK_GRAY,colors.BLACK)
+        y = y + 1
+    end
+    if l:getTag(tags.BED) then
+        framebuffer.writeText(x,y,"Bed",colors.GREEN,colors.BLACK)
         y = y + 1
     end
     local filth = l:getStatistic(statistictypes.FILTH)

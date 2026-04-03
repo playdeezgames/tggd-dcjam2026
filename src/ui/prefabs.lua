@@ -6,4 +6,5 @@ M.AHEAD_DOOR = "ahead door"
 M.LEFT_DOOR = "left door"
 M.RIGHT_DOOR = "right door"
 M.DEEP_SINK = "deep sink"
+M.BED = "bed"
 return M
