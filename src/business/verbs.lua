@@ -9,4 +9,5 @@ M.EAT = "eat"
 M.CLEAN = "clean"
 M.RINSE = "rinse"
 M.REST = "rest"
+M.ENTER_GROUND_INVENTORY = "enter ground inventory"
 return M

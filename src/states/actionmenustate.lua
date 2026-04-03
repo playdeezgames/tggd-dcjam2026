@@ -7,6 +7,7 @@ local M = {}
 M.VERBS = {
     verbs.LEAVE_ACTION_MENU,
     verbs.ENTER_INVENTORY,
+    verbs.ENTER_GROUND_INVENTORY,
     verbs.REST
 }
 local menustate = require("states.menustate")

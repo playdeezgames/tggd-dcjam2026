@@ -14,6 +14,18 @@ function M.nextState(w)
     end
     if avatar:getTag(tags.ACTION_MENU) then
         return states.ACTION_MENU
+    elseif avatar:getTag(tags.GROUND_INVENTORY) then
+        local itemStackType = avatar:getMetadata(metadatas.ITEM_STACK_TYPE)
+        if itemStackType ~= nil then
+            local yokedItemId = avatar:getYoke(yokes.ITEM_ID)
+            if yokedItemId ~= nil then
+                return states.GROUND_INVENTORY_ITEM
+            else
+                return states.GROUND_INVENTORY_ITEM_STACK
+            end
+        else
+            return states.GROUND_INVENTORY
+        end
     elseif avatar:getTag(tags.INVENTORY) then
         local itemStackType = avatar:getMetadata(metadatas.ITEM_STACK_TYPE)
         if itemStackType ~= nil then
