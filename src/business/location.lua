@@ -119,6 +119,9 @@ function M.create(data, locationId, w)
         local locationData = self:getLocationData()
         return locationData.tags[tagType] ~= nil
     end
+    function instance:hasItems()
+        return self:getInventory():hasItems()
+    end
     return instance
 end
 return M

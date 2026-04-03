@@ -59,6 +59,10 @@ local function drawStats()
         framebuffer.writeText(x,y,"Bed",colors.GREEN,colors.BLACK)
         y = y + 1
     end
+    if l:hasItems() then
+        framebuffer.writeText(x,y,"Ground Items",colors.BLACK,colors.DARK_GRAY)
+        y = y + 1
+    end
     local filth = l:getStatistic(statistictypes.FILTH)
     if filth > 0 then
         framebuffer.writeText(x,y,"Room Filth: "..filth,colors.BROWN,colors.BLACK)
