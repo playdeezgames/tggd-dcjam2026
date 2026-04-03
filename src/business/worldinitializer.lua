@@ -7,8 +7,11 @@ local charactertypes = require("business.charactertypes")
 local rng           = require("utility.rng")
 local routetypes    = require("business.routetypes")
 local tags          = require("business.tags")
+local itemtypes     = require("business.itemtypes")
 local DEEP_SINK_COUNT = 5
 local BED_COUNT = 2
+local RAG_COUNT = 5
+local FOOD_COUNT = 10
 local function spawnDeepSinks(map)
     local deepSinkCount = DEEP_SINK_COUNT
     while deepSinkCount > 0 do
@@ -33,6 +36,26 @@ local function spawnBeds(map)
         end
     end
 end
+local function spawnRags(map, w)
+    local ragCount = RAG_COUNT
+    while ragCount > 0 do
+        local column = rng.fromRange(1, #map)
+        local row = rng.fromRange(1, #map[column])
+        local l = map[column][row]
+        w:createItem(itemtypes.RAG, l:getInventory())
+        ragCount = ragCount - 1
+    end
+end
+local function spawnFood(map, w)
+    local foodCount = FOOD_COUNT
+    while foodCount > 0 do
+        local column = rng.fromRange(1, #map)
+        local row = rng.fromRange(1, #map[column])
+        local l = map[column][row]
+        w:createItem(itemtypes.FOOD, l:getInventory())
+        foodCount = foodCount - 1
+    end
+end
 local function createLocationMap(w, m)
     local map = {}
     for column = 1, m:getColumns() do
@@ -43,8 +66,8 @@ local function createLocationMap(w, m)
     end
     spawnDeepSinks(map)
     spawnBeds(map)
-    --TODO: spawn rags
-    --TODO: spawn food
+    spawnRags(map, w)
+    spawnFood(map, w)
     return map
 end
 local function createRoutes(w, map, m, walker)
