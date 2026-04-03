@@ -11,4 +11,5 @@ M.INVENTORY_ITEM = "inventory item"
 M.GROUND_INVENTORY = "ground inventory"
 M.GROUND_INVENTORY_ITEM_STACK = "ground item stack"
 M.GROUND_INVENTORY_ITEM = "ground inventory item"
+M.WIN = "win"
 return M

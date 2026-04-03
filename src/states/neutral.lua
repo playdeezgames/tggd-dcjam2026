@@ -12,6 +12,9 @@ function M.nextState(w)
     if health <= minimumHealth then
         return states.GAME_OVER
     end
+    if w:hasWon() then
+        return states.WIN
+    end
     if avatar:getTag(tags.ACTION_MENU) then
         return states.ACTION_MENU
     elseif avatar:getTag(tags.GROUND_INVENTORY) then

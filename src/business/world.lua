@@ -4,6 +4,7 @@ local character = require("business.character")
 local route     = require("business.route")
 local inventory = require("business.inventory")
 local item      = require("business.item")
+local statistictypes = require("business.statistictypes")
 local M = {}
 function M.create(data)
     local instance = {}
@@ -119,6 +120,21 @@ function M.create(data)
     end
     function instance:getInventory(inventoryId)
         return inventory.create(self.data, inventoryId, self)
+    end
+    function instance:getLocations()
+        local result = {}
+        for ix, _ in ipairs(self.data.locations) do
+            table.insert(result, self:getLocation(ix))
+        end
+        return result
+    end
+    function instance:hasWon()
+        for _, l in ipairs(self:getLocations()) do
+            if l:getStatistic(statistictypes.FILTH) > l:getStatisticMinimum(statistictypes.FILTH) then
+                return false
+            end
+        end
+        return true
     end
     return instance
 end
