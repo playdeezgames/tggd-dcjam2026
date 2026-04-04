@@ -51,6 +51,8 @@ local function drawStats()
 
     framebuffer.writeText(x,y,"Room:"..l:getName(), colors.LIGHT_BLUE, colors.BLACK)
     y = y + 1
+    framebuffer.writeText(x,y,"Facing:"..cardinalwalker.getDirectionName(avatar:getFacing()), colors.CYAN, colors.BLACK)
+    y = y + 1
     if l:getTag(tags.DEEP_SINK) then
         framebuffer.writeText(x,y,"Deep Sink",colors.DARK_GRAY,colors.BLACK)
         y = y + 1

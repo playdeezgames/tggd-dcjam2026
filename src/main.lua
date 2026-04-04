@@ -65,3 +65,4 @@ function love.keypressed( key, scancode, isrepeat )
 end
 --https://alexjgriffith.itch.io/lovejs-player
 --7z a -tzip -r ..\sunnymeadows.love *
+--https://thegrumpygamedev.itch.io/sunny-meadows-of-splorr

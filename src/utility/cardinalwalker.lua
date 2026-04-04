@@ -29,6 +29,11 @@ RIGHT_DIRECTIONS[M.NORTH] = M.EAST
 RIGHT_DIRECTIONS[M.EAST] = M.SOUTH
 RIGHT_DIRECTIONS[M.SOUTH] = M.WEST
 RIGHT_DIRECTIONS[M.WEST] = M.NORTH
+local DIRECTION_NAMES = {}
+DIRECTION_NAMES[M.NORTH] = "North"
+DIRECTION_NAMES[M.EAST] = "East"
+DIRECTION_NAMES[M.SOUTH] = "South"
+DIRECTION_NAMES[M.WEST] = "West"
 function M.create()
     local instance = {}
     function instance:getDirections()
@@ -47,5 +52,8 @@ function M.getLeft(direction)
 end
 function M.getRight(direction)
     return RIGHT_DIRECTIONS[direction]
+end
+function M.getDirectionName(direction)
+    return DIRECTION_NAMES[direction]
 end
 return M
